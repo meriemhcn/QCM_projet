@@ -1,5 +1,6 @@
 import json
 import time
+import csv
 
 
 # Gestion des utilisateurs
@@ -90,5 +91,47 @@ def exporter_resultats(utilisateur, historique, fichier_csv):
     except Exception as e:
         print(f"Erreur lors de l'exportation : {e}")
 
+# Main application
+def application_qcm():
+    fichier_utilisateurs = "utilisateurs.json"
+    fichier_questions = "questions.json"
+    fichier_csv = "resultats.csv"
 
+    utilisateurs = charger_utilisateurs(fichier_utilisateurs)
+    utilisateur = input("Entrez votre nom d'utilisateur : ").strip()
+
+    if utilisateur not in utilisateurs:
+        print("Nouvel utilisateur. Création de profil...")
+        utilisateurs[utilisateur] = {"historique": []}
+    else:
+        afficher_historique(utilisateur, utilisateurs)
+
+    categorie = input("Choisissez une catégorie (Python, Réseaux, Algorithmes) ou laissez vide pour toutes les catégories : ").strip()
+    questions = charger_questions(fichier_questions, categorie)
+    if not questions:
+        return
+
+    limite_temps_total = 30  # Temps fixe à 30 secondes
+
+    print("\nLe test commence maintenant !\n")
+    score, total = poser_questions(questions, limite_temps_total)
+
+    print(f"Votre score final : {score}/{total}")
+
+    # Mise à jour de l'historique
+    utilisateurs[utilisateur]["historique"].append({
+        "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "categorie": categorie,
+        "score": score,
+        "total_questions": total
+    })
+    sauvegarder_utilisateurs(fichier_utilisateurs, utilisateurs)
+
+    # Exportation automatique des résultats
+    exporter_resultats(utilisateur, utilisateurs[utilisateur]["historique"], fichier_csv)
+
+    print("\nHistorique mis à jour avec succès !")
+
+if __name__ == "__main__":
+    application_qcm()
 
