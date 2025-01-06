@@ -1,4 +1,6 @@
 import json
+import time
+
 
 # Gestion des utilisateurs
 def charger_utilisateurs(fichier):
@@ -33,6 +35,36 @@ def charger_questions(fichier, categorie=None):
         print(f"Erreur : {e}")
         print("Veuillez vérifier le fichier '{}' et réessayer.".format(fichier))
         return []
+
+def poser_questions(questions, limite_temps_total=None):
+    score = 0
+    total = len(questions)
+    debut_test = time.time()
+
+    for index, question in enumerate(questions, 1):
+        temps_restant = int(limite_temps_total - (time.time() - debut_test))
+        if temps_restant <= 0:
+            print("Temps total écoulé pour le test !")
+            break
+
+        print(f"Temps restant : {temps_restant} secondes")
+        print(f"Question {index}: {question['question']}")
+        for option in question['options']:
+            print(option)
+        reponse = input("Votre réponse : ").strip().lower()
+
+        temps_restant = int(limite_temps_total - (time.time() - debut_test))
+        if temps_restant <= 0:
+            print("\nTemps total écoulé pour le test !")
+            break
+
+        if reponse == question['correcte']:
+            print("Bonne réponse !")
+            score += 1
+        else:
+            print(f"Mauvaise réponse. La bonne réponse était : {question['correcte']}")
+        print("-" * 30)
+    return score, total
 
 
 def afficher_historique(utilisateur, utilisateurs):
