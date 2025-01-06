@@ -117,3 +117,14 @@ class QCMApp:
             self.create_category_screen()
         else:
             self.show_user_options()
+    def show_user_options(self):
+        self.clear_screen()
+
+        frame = tk.Frame(self.root, bg=BG_COLOR)
+        frame.pack(expand=True)
+
+        tk.Label(frame, text=f"Bonjour, {self.utilisateur_actuel}", font=("Arial", 16), fg=FG_COLOR, bg=BG_COLOR).pack(pady=20)
+
+        Button(frame, text="Qcm", command=self.create_category_screen, fg=FG_COLOR, bg=BUTTON_COLOR, font=CUSTOM_FONT, activeforeground=ACCENT_COLOR).pack(pady=10)
+        Button(frame, text="Historique", command=self.show_history, fg=FG_COLOR, bg=BUTTON_COLOR, font=CUSTOM_FONT, activeforeground=ACCENT_COLOR).pack(pady=10)
+            
