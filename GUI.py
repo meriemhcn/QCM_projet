@@ -92,3 +92,28 @@ class QCMApp:
 
         # Bouton Start
         Button(frame, text="Start", command=self.create_login_screen, fg=FG_COLOR, bg=BUTTON_COLOR, font=("Arial", 16), activeforeground=ACCENT_COLOR).pack(pady=20)
+
+    def create_login_screen(self):
+        self.clear_screen()
+
+        frame = tk.Frame(self.root, bg=BG_COLOR)
+        frame.pack(expand=True)
+
+        #tk.Label(frame, text="Bienvenue dans l'application QCM", font=("Arial", 16), fg=FG_COLOR, bg=BG_COLOR).pack(pady=20)
+        tk.Label(frame, text="Entrez votre nom d'utilisateur :", font=CUSTOM_FONT, fg=FG_COLOR, bg=BG_COLOR).pack(pady=20)
+        self.entry_username = tk.Entry(frame, width=20, fg=FG_COLOR, bg=BG_COLOR, font=CUSTOM_FONT, highlightthickness=0.5)
+        self.entry_username.pack(pady=10)
+        Button(frame, text="Continuer", command=self.handle_login, fg=FG_COLOR, bg=BUTTON_COLOR, font=CUSTOM_FONT, activeforeground=ACCENT_COLOR).pack(pady=10)
+
+    def handle_login(self):
+        username = self.entry_username.get().strip()
+        if not username:
+            messagebox.showerror("Erreur", "Veuillez entrer un nom d'utilisateur.")
+            return
+
+        self.utilisateur_actuel = username
+        if username not in self.utilisateurs:
+            self.utilisateurs[username] = {"historique": []}
+            self.create_category_screen()
+        else:
+            self.show_user_options()
