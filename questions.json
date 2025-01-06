@@ -1,0 +1,56 @@
+[
+    {
+        "categorie": "Algorithme",
+        "question": "Quelle est la complexité en temps du tri par insertion dans le pire des cas ?",
+        "options": ["a) O(n)", "b) O(n^2)", "c) O(log n)", "d) O(n log n)"],
+        "correcte": "b"
+    },
+    {
+        "categorie": "Algorithme",
+        "question": "Quel algorithme est le plus efficace pour trouver le plus court chemin dans un graphe pondéré ?",
+        "options": ["a) Kruskal", "b) Prim", "c) Dijkstra", "d) Bellman-Ford"],
+        "correcte": "c"
+    },
+    {
+        "categorie": "Algorithme",
+        "question": "Combien de comparaisons sont nécessaires pour rechercher un élément dans un tableau trié de taille n en utilisant la recherche binaire dans le pire des cas ?",
+        "options": ["a) O(1)", "b) O(log n)", "c) O(n)", "d) O(n log n)"],
+        "correcte": "b"
+    },
+    {
+        "categorie": "Reseau",
+        "question": "Quel est le protocole utilisé pour traduire une URL en adresse IP ?",
+        "options": ["a) HTTP", "b) ARP", "c) DNS", "d) DHCP"],
+        "correcte": "c"
+    },
+    {
+        "categorie": "Reseau",
+        "question": "Quelle couche du modèle OSI est responsable de l'encapsulation des données en paquets ?",
+        "options": ["a) Transport", "b) Réseau", "c) Liaison de données", "d) Session"],
+        "correcte": "b"
+    },
+    {
+        "categorie": "Reseau",
+        "question": "Quel est le rôle principal du protocole TCP dans une communication réseau ?",
+        "options": ["a) Gestion des adresses IP", "b) Établir une communication sans état", "c) Assurer la fiabilité des échanges", "d) Traduire les noms de domaine"],
+        "correcte": "c"
+    },
+    {
+        "categorie": "Python",
+        "question": "Quel est le résultat de `list(range(5, 15, 3))` ?",
+        "options": ["a) [5, 10, 15]", "b) [5, 8, 11, 14]", "c) [5, 8, 11, 14, 17]", "d) [5, 10, 14]"],
+        "correcte": "b"
+    },
+    {
+        "categorie": "Python",
+        "question": "Quelle est la différence entre `is` et `==` en Python ?",
+        "options": ["a) `is` compare les valeurs tandis que `==` compare les références", "b) `is` compare les références tandis que `==` compare les valeurs", "c) Les deux sont équivalents", "d) Aucun des deux"],
+        "correcte": "b"
+    },
+    {
+        "categorie": "Python",
+        "question": "Quelle méthode peut être utilisée pour convertir un objet en chaîne JSON ?",
+        "options": ["a) json.encode()", "b) json.dump()", "c) json.loads()", "d) json.dumps()"],
+        "correcte": "d"
+    }
+]
