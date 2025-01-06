@@ -162,4 +162,35 @@ class QCMApp:
         )
         self.combo_category.pack(pady=10)
         Button(frame, text="Commencer", command=self.start_quiz, fg=FG_COLOR, bg=BUTTON_COLOR, font=CUSTOM_FONT, activeforeground=ACCENT_COLOR).pack(pady=10)
+
+
+    def start_quiz(self):
+        self.categorie_selectionnee = self.combo_category.get().strip()  # Stockez la catégorie
+        if not self.categorie_selectionnee:
+            messagebox.showerror("Erreur", "Veuillez sélectionner une catégorie.")
+            return
+
+        self.questions = self.load_questions(self.categorie_selectionnee)
+        if not self.questions:
+            messagebox.showerror("Erreur", "Aucune question trouvée pour la catégorie sélectionnée.")
+            return
+
+        self.score = 0
+        self.total_questions = len(self.questions)
+        self.index_question = 0
+        self.temps_restant = 60
+        self.test_en_cours = True
+
+        self.create_question_screen()
+        self.update_timer()
+
+    def load_questions(self, categorie):
+        try:
+            with open(self.fichier_questions, 'r', encoding='utf-8') as f:  # Ajout de encoding='utf-8'
+                questions = json.load(f)
+                return [q for q in questions if q.get("categorie", "").lower() == categorie.lower()]
+        except Exception as e:
+            print(f"Erreur lors du chargement des questions : {e}")
+            return []
+
         
