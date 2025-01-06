@@ -229,4 +229,45 @@ class QCMApp:
         else:
             self.test_en_cours = False
             self.show_results()
-        
+    def update_timer(self):
+        if self.temps_restant > 0 and self.test_en_cours:
+            self.temps_restant -= 1
+            self.root.after(1000, self.update_timer)
+        elif self.temps_restant <= 0 and self.test_en_cours:
+            self.test_en_cours = False
+            messagebox.showinfo("Temps écoulé", "Le temps est écoulé pour ce test.")
+            self.show_results()
+            
+    def show_results(self):
+        self.clear_screen()
+
+        frame = tk.Frame(self.root, bg=BG_COLOR)
+        frame.pack(expand=True)
+
+        tk.Label(frame, text="Résultats du test", font=("Arial", 16), fg=FG_COLOR, bg=BG_COLOR).pack(pady=20)
+        tk.Label(frame, text=f"Score : {self.score}/{self.total_questions}", font=("Arial", 14), fg=FG_COLOR, bg=BG_COLOR).pack(pady=10)
+
+        self.utilisateurs[self.utilisateur_actuel]["historique"].append({
+            "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "categorie": self.categorie_selectionnee,  # Utilisez la catégorie sauvegardée
+            "score": self.score,
+            "total_questions": self.total_questions
+        })
+        sauvegarder_utilisateurs(self.fichier_utilisateurs, self.utilisateurs)
+        exporter_resultats(self.utilisateur_actuel, self.utilisateurs[self.utilisateur_actuel]["historique"], self.fichier_csv)
+
+        Button(frame, text="Retour", command=self.create_login_screen, fg=FG_COLOR, bg=BUTTON_COLOR, font=CUSTOM_FONT, activeforeground=ACCENT_COLOR).pack(pady=20)
+
+    def clear_screen(self):
+        for widget in self.root.winfo_children():
+            widget.destroy()
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    
+    # Appliquer un thème compatible
+    style = ttk.Style()
+    style.theme_use("clam")  # "clam" fonctionne bien sur macOS
+    root.configure(bg=BG_COLOR)  # Set background color for the window
+    app = QCMApp(root)
+    root.mainloop()        
