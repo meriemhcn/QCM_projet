@@ -33,3 +33,16 @@ def charger_questions(fichier, categorie=None):
         print(f"Erreur : {e}")
         print("Veuillez vérifier le fichier '{}' et réessayer.".format(fichier))
         return []
+
+
+def afficher_historique(utilisateur, utilisateurs):
+    historique = utilisateurs.get(utilisateur, {}).get("historique", [])
+    if not historique:
+        print("Aucun historique disponible.")
+    else:
+        print("Historique de {} :".format(utilisateur))
+        for entree in historique:
+            categorie = entree.get("categorie", "Non spécifiée")  # Valeur par défaut si la clé est absente
+            print("- Date: {}, Catégorie: {}, Score: {}/{}".format(
+                entree["date"], categorie, entree["score"], entree["total_questions"]
+            ))
