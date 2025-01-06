@@ -129,19 +129,37 @@ class QCMApp:
         Button(frame, text="Qcm", command=self.create_category_screen, fg=FG_COLOR, bg=BUTTON_COLOR, font=CUSTOM_FONT, activeforeground=ACCENT_COLOR).pack(pady=10)
         Button(frame, text="Historique", command=self.show_history, fg=FG_COLOR, bg=BUTTON_COLOR, font=CUSTOM_FONT, activeforeground=ACCENT_COLOR).pack(pady=10)
             
-def show_history(self):
+    def show_history(self):
+            self.clear_screen()
+
+            frame = tk.Frame(self.root, bg=BG_COLOR)
+            frame.pack(expand=True)
+
+            tk.Label(frame, text=f"Historique de {self.utilisateur_actuel}", font=("Arial", 16), fg=FG_COLOR, bg=BG_COLOR).pack(pady=20)
+
+            historique = self.utilisateurs[self.utilisateur_actuel]["historique"]
+            if not historique:
+                tk.Label(frame, text="Aucun historique disponible.", font=("Arial", 14), fg=FG_COLOR, bg=BG_COLOR).pack(pady=10)
+            else:
+                for entry in historique:
+                    tk.Label(frame, text=f"Date: {entry['date']}, Catégorie: {entry['categorie']}, Score: {entry['score']}/{entry['total_questions']}", font=("Arial", 12), fg=FG_COLOR, bg=BG_COLOR, wraplength=500, justify="left").pack(pady=5)
+
+            Button(frame, text="Retour", command=self.show_user_options, fg=FG_COLOR, bg=BUTTON_COLOR, font=CUSTOM_FONT, activeforeground=ACCENT_COLOR).pack(pady=20)
+    def create_category_screen(self):
         self.clear_screen()
 
         frame = tk.Frame(self.root, bg=BG_COLOR)
         frame.pack(expand=True)
 
-        tk.Label(frame, text=f"Historique de {self.utilisateur_actuel}", font=("Arial", 16), fg=FG_COLOR, bg=BG_COLOR).pack(pady=20)
-
-        historique = self.utilisateurs[self.utilisateur_actuel]["historique"]
-        if not historique:
-            tk.Label(frame, text="Aucun historique disponible.", font=("Arial", 14), fg=FG_COLOR, bg=BG_COLOR).pack(pady=10)
-        else:
-            for entry in historique:
-                tk.Label(frame, text=f"Date: {entry['date']}, Catégorie: {entry['categorie']}, Score: {entry['score']}/{entry['total_questions']}", font=("Arial", 12), fg=FG_COLOR, bg=BG_COLOR, wraplength=500, justify="left").pack(pady=5)
-
-        Button(frame, text="Retour", command=self.show_user_options, fg=FG_COLOR, bg=BUTTON_COLOR, font=CUSTOM_FONT, activeforeground=ACCENT_COLOR).pack(pady=20)
+        tk.Label(frame, text=f"Bonjour, {self.utilisateur_actuel}", font=("Arial", 14), fg=FG_COLOR, bg=BG_COLOR).pack(pady=20)
+        tk.Label(frame, text="Choisissez une catégorie :", font=CUSTOM_FONT, fg=FG_COLOR, bg=BG_COLOR).pack()
+        self.combo_category = ttk.Combobox(
+            frame,
+            values=["Python", "Reseau", "Algorithme"],
+            font=CUSTOM_FONT,
+            state="readonly",
+            style="TCombobox"
+        )
+        self.combo_category.pack(pady=10)
+        Button(frame, text="Commencer", command=self.start_quiz, fg=FG_COLOR, bg=BUTTON_COLOR, font=CUSTOM_FONT, activeforeground=ACCENT_COLOR).pack(pady=10)
+        
