@@ -193,4 +193,40 @@ class QCMApp:
             print(f"Erreur lors du chargement des questions : {e}")
             return []
 
+
+    def create_question_screen(self):
+        self.clear_screen()
+
+        frame = tk.Frame(self.root, bg=BG_COLOR)
+        frame.pack(expand=True)
+
+        if self.index_question < self.total_questions:
+            question = self.questions[self.index_question]
+
+            tk.Label(frame, text=f"Temps restant : {self.temps_restant} secondes", font=("Arial", 14), fg=ACCENT_COLOR, bg=BG_COLOR).pack(pady=10)
+            tk.Label(frame, text=f"Question {self.index_question + 1}/{self.total_questions}", font=("Arial", 14), fg=FG_COLOR, bg=BG_COLOR).pack()
+            tk.Label(frame, text=question["question"], wraplength=400, fg=FG_COLOR, bg=BG_COLOR, font=("Arial", 11)).pack(pady=10)
+
+            self.var_answer = tk.StringVar()
+            for option in question["options"]:
+                tk.Radiobutton(frame, text=option, variable=self.var_answer, value=option[0], fg=FG_COLOR, bg=BG_COLOR, selectcolor=ACCENT_COLOR, font=CUSTOM_FONT).pack(anchor="w")
+
+            feedback_label = tk.Label(frame, text="", font=("Arial", 12), fg=ACCENT_COLOR, bg=BG_COLOR)
+            feedback_label.pack(pady=10)
+
+            def validate_and_provide_feedback():
+                selected_answer = self.var_answer.get().strip().lower()
+                if selected_answer == question["correcte"]:
+                    feedback_label.config(text="Bonne réponse !", fg="green")
+                    self.score += 1
+                else:
+                    feedback_label.config(text=f"Réponse incorrecte. La bonne réponse était : {question['correcte']}", fg="red")
+
+                self.index_question += 1
+                self.root.after(2000, self.create_question_screen)
+
+            Button(frame, text="Valider", command=validate_and_provide_feedback, fg=FG_COLOR, bg=BUTTON_COLOR, font=CUSTOM_FONT, activeforeground=ACCENT_COLOR).pack(pady=10)
+        else:
+            self.test_en_cours = False
+            self.show_results()
         
