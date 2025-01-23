@@ -52,5 +52,49 @@
         "question": "Quelle méthode peut être utilisée pour convertir un objet en chaîne JSON ?",
         "options": ["a) json.encode()", "b) json.dump()", "c) json.loads()", "d) json.dumps()"],
         "correcte": "d"
-    }
+    },
+    
+    {
+        "categorie": "Algorithme",
+        "question": "Quel algorithme de tri a une complexité moyenne de O(n log n) ?",
+        "options": ["a) Tri par insertion", "b) Tri rapide (QuickSort)", "c) Tri par sélection", "d) Tri à bulles"],
+        "correcte": "b"
+    },
+        {
+            "categorie": "Algorithme",
+            "question": "Lequel de ces algorithmes n'est pas un algorithme de tri ?",
+            "options": ["a) Tri par tas", "b) Tri fusion", "c) Floyd-Warshall", "d) Tri à bulles"],
+            "correcte": "c"
+        },
+        {
+            "categorie": "Reseau",
+            "question": "Quel est le rôle principal du protocole DHCP ?",
+            "options": ["a) Traduction des adresses IP", "b) Attribution des adresses IP dynamiques", "c) Routage des paquets", "d) Cryptage des données"],
+            "correcte": "b"
+        },
+        {
+            "categorie": "Reseau",
+            "question": "Quel port est utilisé par défaut pour les connexions HTTP ?",
+            "options": ["a) 21", "b) 22", "c) 80", "d) 443"],
+            "correcte": "c"
+        },
+        {
+            "categorie": "Python",
+            "question": "Quelle est la valeur de bool([]) en Python ?",
+            "options": ["a) True", "b) False", "c) None", "d) Erreur"],
+            "correcte": "b"
+        },
+        {
+            "categorie": "Python",
+            "question": "Quelle bibliothèque Python est couramment utilisée pour le calcul scientifique ?",
+            "options": ["a) Flask", "b) NumPy", "c) Django", "d) Matplotlib"],
+            "correcte": "b"
+        },
+        {
+            "categorie": "Python",
+            "question": "Comment créer un dictionnaire vide en Python ?",
+            "options": ["a) dict = ()", "b) dict = []", "c) dict = {}", "d) dict = None"],
+            "correcte": "c"
+        }
+    
 ]
