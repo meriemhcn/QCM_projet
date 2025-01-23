@@ -18,5 +18,27 @@
                 "total_questions": 3
             }
         ]
+    },
+    "yuki": {
+        "historique": [
+            {
+                "date": "2025-01-23 10:41:40",
+                "categorie": "Reseau",
+                "score": 0,
+                "total_questions": 5
+            },
+            {
+                "date": "2025-01-23 10:41:41",
+                "categorie": "Reseau",
+                "score": 0,
+                "total_questions": 5
+            },
+            {
+                "date": "2025-01-23 10:41:42",
+                "categorie": "Reseau",
+                "score": 0,
+                "total_questions": 5
+            }
+        ]
     }
 }

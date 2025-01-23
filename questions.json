@@ -77,26 +77,23 @@
         "options": ["a) json.encode()", "b) json.dump()", "c) json.loads()", "d) json.dumps()"],
         "correcte": "d"
     },
-    
-
-
-        {
+    {
             "categorie": "Python",
             "question": "Quelle est la valeur de bool([]) en Python ?",
             "options": ["a) True", "b) False", "c) None", "d) Erreur"],
             "correcte": "b"
-        },
-        {
+    },
+    {
             "categorie": "Python",
             "question": "Quelle bibliothèque Python est couramment utilisée pour le calcul scientifique ?",
             "options": ["a) Flask", "b) NumPy", "c) Django", "d) Matplotlib"],
             "correcte": "b"
-        },
-        {
+    },
+    {
             "categorie": "Python",
             "question": "Comment créer un dictionnaire vide en Python ?",
             "options": ["a) dict = ()", "b) dict = []", "c) dict = {}", "d) dict = None"],
             "correcte": "c"
-        }
+    }
     
 ]
